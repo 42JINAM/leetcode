@@ -1,17 +1,21 @@
 #include <iostream>
+#include <map>
 #include <string>
 using namespace std;
 
 class Solution {
 public:
   bool canConstruct(string ransomNote, string magazine) {
-    int position;
-    for (char &cha : ransomNote) {
-      position = magazine.find(cha);
-      if (position == string::npos)
+    map<char, int> magazineMap;
+
+    for (auto &cha : magazine) {
+      magazineMap[cha]++;
+    }
+    for (auto &cha : ransomNote) {
+      if (magazineMap[cha]) {
+        magazineMap[cha]--;
+      } else {
         return false;
-      else {
-        magazine.erase(position, 1);
       }
     }
     return true;
