@@ -8,22 +8,17 @@ using namespace std;
 
 class Solution {
 public:
-  // Write your solution here
   int removeDuplicates(vector<int> &nums) {
+    int i = 0;
     if (nums.size() == 0)
       return 0;
-    vector<int>::iterator first = nums.begin();
-    vector<int>::iterator second = nums.begin() + 1;
-
-    for (; second != nums.end();) {
-      if (*first == *second) {
-        second = nums.erase(second);
-      } else {
-        first = second;
-        second = first + 1;
+    for (int j = 0; j != nums.size(); j++) {
+      if (nums[i] != nums[j]) {
+        i++;
+        nums[i] = nums[j];
       }
     }
-    return nums.size();
+    return (i + 1);
   }
 };
 
