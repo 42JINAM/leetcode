@@ -8,18 +8,17 @@ class Solution {
 public:
   string mergeAlternately(string word1, string word2) {
     string res;
-    string::iterator it = word2.begin();
-    bool word2_end = false;
-    for (char &c : word1) {
-      res += c;
-      if (it != word2.end())
-        res += *it++;
-      else
-        word2_end = true;
-    }
-    if (word2_end == false) {
-      for (; it != word2.end(); it++) {
-        res += *it;
+    int m = word1.size();
+    int n = word2.size();
+    int i = 0;
+    int j = 0;
+
+    while (i < m || j < n) {
+      if (i < m) {
+        res += word1[i++];
+      }
+      if (j < n) {
+        res += word2[j++];
       }
     }
     return res;
