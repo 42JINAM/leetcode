@@ -1,7 +1,6 @@
 class Solution {
 public:
     bool canPlaceFlowers(vector<int>& flowerbed, int n) {
-        int count = 0;
         int prev = 0;
         int next = 0;
         int current;
@@ -13,12 +12,12 @@ public:
                 next = flowerbed[i + 1];
             }
             if (current == 0 && prev == 0 && next == 0) {
-                count++;
+                n --;
                 prev = 1;
             } else {
                 prev = current;
             }
         }
-        return (count >= n);
+        return (n <= 0);
     }
 };
