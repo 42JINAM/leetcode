@@ -1,22 +1,25 @@
 class Solution {
 public:
-    const char *vowels = "aeiouAEIOU";
+    bool isVowel(char c) {
+        return c == 'a' || c == 'i' || c == 'e' || c == 'o' || c == 'u'
+            || c == 'A' || c == 'I' || c == 'E' || c == 'O' || c == 'U';
+    }
+    
     string reverseVowels(string s) {
-      vector<int> s_vowels;
-      string res;
-      for (char &c: s){
-        if (strchr(vowels, c)){
-          s_vowels.push_back(c);
+      int start = 0;
+      int end = s.size() - 1;
+    
+      while (start < end){
+        while (start != end && !isVowel(s[start])){
+          start ++;
+        }
+        while (end != start && !isVowel(s[end])){
+          end --;
+        }
+        if (start < end){
+          swap(s[start++], s[end--]);
         }
       }
-      int i = s_vowels.size() - 1;
-      for (char &c: s){
-        if (strchr(vowels, c)){
-            res.push_back(s_vowels[i--]);
-        } else {
-            res.push_back(c);
-        }
-      }
-      return res;
+      return s;
     }
 };
